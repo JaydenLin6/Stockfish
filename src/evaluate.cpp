@@ -63,13 +63,13 @@ Value Eval::evaluate(const Eval::NNUE::Networks&    networks,
                                        : networks.big.evaluate(pos, accumulators, caches.big);
 
     // Fishtest improvement: slightly prioritize positional evaluation and cache nnue complexity
-    Value nnue = (125 * psqt + 135 * positional) / 128;  // was 131
+    Value nnue = (125 * psqt + 132 * positional) / 128;  // was 131
 
     // Re-evaluate the position when higher eval accuracy is worth the time spent
     if (smallNet && (std::abs(nnue) < 277))
     {
         std::tie(psqt, positional) = networks.big.evaluate(pos, accumulators, caches.big);
-        nnue                       = (125 * psqt + 135 * positional) / 128;  // updated weighting
+        nnue                       = (125 * psqt + 132 * positional) / 128;  // updated weighting
         smallNet                   = false;
     }
 
